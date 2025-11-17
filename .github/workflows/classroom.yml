@@ -19,7 +19,7 @@ jobs:
       with:
         test-name: AI Code Review Script Test
         setup-command: npm install @octokit/rest openai
-        command: node ai-review.mjs
+        command: node .github/ai-review.mjs
         timeout: 10
         max-score: 100
     - name: Autograding Reporter
