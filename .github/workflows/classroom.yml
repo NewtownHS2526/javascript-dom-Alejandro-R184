@@ -1,6 +1,6 @@
 name: Autograding Tests
 'on':
-- push
+- workflow_dispatch
 - repository_dispatch
 permissions:
   checks: write
@@ -13,18 +13,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: ai-review
-      id: ai-review
+    - name: AI Code Review Script Test
+      id: ai-code-review-script-test
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: ai-review
-        setup-command: npm install openai @octokit/action
-        command: node ai-review.mjs
+        test-name: AI Code Review Script Test
+        setup-command: npm install @octokit/rest openai
+        command: node .github/ai-review.mjs
         timeout: 10
         max-score: 100
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        AI-REVIEW_RESULTS: "${{steps.ai-review.outputs.result}}"
+        AI-CODE-REVIEW-SCRIPT-TEST_RESULTS: "${{steps.ai-code-review-script-test.outputs.result}}"
       with:
-        runners: ai-review
+        runners: ai-code-review-script-test
