@@ -1,6 +1,6 @@
 // TODO: Create variables name and age
 // TODO: Print them using console.log()
 
-let name = "jeff"
-let age = 17
-console.log( name , age)
+let name = "jeff";
+let age = 17;
+console.log( name , age);
